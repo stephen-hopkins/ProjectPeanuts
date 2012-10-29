@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace Peanuts.Interfaces
 {
-    interface IEpisode
+    public interface IEpisode
     {
-        private string Title { get; set;}
-        private int SeasonNumber { get; set;}
-        private int EpisodeNumber { get; set;}
-        private string ImageURI { get; set;}
-        private string Synopsis { get; set;}
-
-
+        string Title { get; set;}
+        int SeasonNumber { get; set;}
+        int EpisodeNumber { get; set;}
+        string ImageURI { get; set;}
+        string Synopsis { get; set;}
     }
 }

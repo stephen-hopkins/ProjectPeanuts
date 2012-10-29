@@ -101,17 +101,21 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Folder Include="Controller\" />
-    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controller\CalendarPopulator.cs" />
     <Compile Include="Helpers\DataFetcher.cs" />
     <Compile Include="Interfaces\IDataFetcher.cs" />
     <Compile Include="Interfaces\IEpisode.cs" />
-    <Compile Include="View\MainPage.xaml.cs">
+    <Compile Include="Interfaces\ISeries.cs" />
+    <Compile Include="Model\Calendar.cs" />
+    <Compile Include="Model\Episode.cs" />
+    <Compile Include="Model\Series.cs" />
+    <Compile Include="View\Components\EpisodeView.cs" />
+    <Compile Include="View\Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -137,7 +141,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\MainPage.xaml">
+    <Page Include="View\Pages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
