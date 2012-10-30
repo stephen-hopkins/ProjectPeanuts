@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Windows.Data.Json;
+using Windows.Foundation.Collections;
 
 namespace Peanuts.Helpers
 {
@@ -20,8 +21,8 @@ namespace Peanuts.Helpers
             HttpResponseMessage response = await httpClient.GetAsync(address);
             string jsonString = await response.Content.ReadAsStringAsync();
 
-            JsonObject json = JsonObject.Parse(jsonString); 
-
+            JsonObject json = JsonObject.Parse(jsonString);
+            JsonArray jArray = json.GetNamedObject("ServicesResult").GetNamedObject("Services").GetArray();
 
         }
     }
