@@ -31,6 +31,8 @@ namespace Peanuts
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            Helpers.DataFetcher df = new Helpers.DataFetcher();
+            var temp = df.getTVServices();
         }
 
         /// <summary>

@@ -9,11 +9,11 @@ using Windows.Foundation.Collections;
 
 namespace Peanuts.Helpers
 {
-    class DataFetcher : Peanuts.Interfaces.IDataFetcher
+    public class DataFetcher : Peanuts.Interfaces.IDataFetcher
     {
-        public async Task<Dictionary<String, int>> getTVServices() {
+        public async Task<Dictionary<string, string>> getTVServices() {
 
-            Dictionary<String, int> tvServices = new Dictionary<string,int>();
+            Dictionary<string, string> tvServices = new Dictionary<string,string>();
 
             String address = "http://api.rovicorp.com/TVlistings/v9/listings/services/postalcode/0/info?locale=en-GB&countrycode=GB&apikey=4xgjm3mcyfy97m7g3fusap2t";
 
@@ -22,7 +22,18 @@ namespace Peanuts.Helpers
             string jsonString = await response.Content.ReadAsStringAsync();
 
             JsonObject json = JsonObject.Parse(jsonString);
-            JsonArray jArray = json.GetNamedObject("ServicesResult").GetNamedObject("Services").GetArray();
+            JsonArray jArray = json.GetNamedObject("ServicesResult").GetNamedObject("Services").GetNamedArray("Service");
+
+            for (uint n = 0; n < jArray.Count; n++) {
+                string serviceName = jArray.GetObjectAt(n).GetNamedString("Name");
+                string serviceID = jArray.GetObjectAt(n).GetNamedString("ServiceId");
+                tvServices.Add(serviceName, serviceID);
+            }
+
+            int hello = 5;
+     
+
+            return tvServices;
 
         }
     }

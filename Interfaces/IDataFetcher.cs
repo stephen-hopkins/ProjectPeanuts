@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Peanuts.Interfaces
 {
-    interface IDataFetcher
+    public interface IDataFetcher
     {
-        public async Dictionary<String, int> getTVServices();
+        //  returns dictionary of name, serviceID
+        Task<Dictionary<string, string>> getTVServices();
     }
 }
