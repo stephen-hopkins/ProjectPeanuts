@@ -31,8 +31,12 @@ namespace Peanuts
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
-            Helpers.DataFetcher df = new Helpers.DataFetcher();
+
+            //  code to test DataFetcher class
+            DataFetcher df = new DataFetcher();
             var temp = df.getTVServices();
+            TVServiceCollection tvc = temp.Result;
+            int h = 1;
         }
 
         /// <summary>

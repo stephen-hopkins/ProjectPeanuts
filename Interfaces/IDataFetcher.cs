@@ -8,7 +8,6 @@ namespace Peanuts
 {
     public interface IDataFetcher
     {
-        //  returns dictionary of name, serviceID
-        Task<Dictionary<string, string>> getTVServices();
+        Task<TVServiceCollection> getTVServices();
     }
 }

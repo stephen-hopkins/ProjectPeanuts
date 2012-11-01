@@ -10,7 +10,8 @@ namespace Peanuts
     {
         private string message;
 
-        public string Message { get; }
+        public override string Message { get {return message;} }
+
 
         public PeanutsException(string m) {
             this.message = m;

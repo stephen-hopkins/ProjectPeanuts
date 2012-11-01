@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Peanuts
 {
-    class TVServiceCollection
+    public class TVServiceCollection : ITVServiceCollection
     {
 
         private List<TVService> tvServices;
@@ -20,7 +20,7 @@ namespace Peanuts
             tvServicesInArea = new List<TVService>();
         }
 
-        public void addTVService(TVService toBeAdded) {
+        public void Add(TVService toBeAdded) {
             tvServices.Add(toBeAdded);
         }
 

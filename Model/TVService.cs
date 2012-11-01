@@ -14,11 +14,11 @@ namespace Peanuts
         private string provider;
         private string type;
 
-        public string ID { get; }
-        public string Name { get; }
-        public string Area { get; }
-        public string Provider { get; }
-        public string Type { get; }
+        public string ID { get { return id; } }
+        public string Name { get { return name; } }
+        public string Area { get { return area; } }
+        public string Provider { get { return provider; } }
+        public string Type { get { return type; } }
 
         public TVService(string id, string name, string area, string provider, string type) {
             this.id = id;

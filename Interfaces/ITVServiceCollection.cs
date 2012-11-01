@@ -8,10 +8,10 @@ namespace Peanuts
 {
     public interface ITVServiceCollection
     {
-        public void addTVService(TVService toBeAdded);
-        public List<String> getAreas();
-        public List<string> getProviders(string area);
-        public List<string> getTVServices(string area, string provider);
-        public string getServiceID(string name);
+        void Add(TVService toBeAdded);
+        List<String> getAreas();
+        List<string> getProviders(string area);
+        List<string> getTVServices(string area, string provider);
+        string getServiceID(string name);
     }
 }

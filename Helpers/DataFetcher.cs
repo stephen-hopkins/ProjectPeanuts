@@ -11,9 +11,9 @@ namespace Peanuts
 {
     public class DataFetcher : IDataFetcher
     {
-        public async Task<Dictionary<string, string>> getTVServices() {
+        public async Task<TVServiceCollection> getTVServices() {
 
-            Dictionary<string, string> tvServices = new Dictionary<string, string>();
+            TVServiceCollection tvServices = new TVServiceCollection();
 
             String address = "http://api.rovicorp.com/TVlistings/v9/listings/services/postalcode/0/info?locale=en-GB&countrycode=GB&apikey=4xgjm3mcyfy97m7g3fusap2t";
 
@@ -25,9 +25,13 @@ namespace Peanuts
             JsonArray jArray = json.GetNamedObject("ServicesResult").GetNamedObject("Services").GetNamedArray("Service");
 
             for (uint n = 0; n < jArray.Count; n++) {
-                string serviceName = jArray.GetObjectAt(n).GetNamedString("Name");
-                string serviceID = jArray.GetObjectAt(n).GetNamedString("ServiceId");
-                tvServices.Add(serviceName, serviceID);
+                string name = jArray.GetObjectAt(n).GetNamedString("Name");
+                string id = jArray.GetObjectAt(n).GetNamedString("ServiceId");
+                string area = jArray.GetObjectAt(n).GetNamedString("City");
+                string provider = jArray.GetObjectAt(n).GetNamedString("MSO");
+                string type = jArray.GetObjectAt(n).GetNamedString("Type");
+                TVService tvService = new TVService(id, name, area, provider, type);
+                tvServices.Add(tvService);
             }
             return tvServices;
         }
