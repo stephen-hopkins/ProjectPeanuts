@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Peanuts.View;
-using Peanuts.Model;
 using Windows.UI.Xaml.Controls;
-using Peanuts.Interfaces;
 
-namespace Peanuts.Controller
+namespace Peanuts
 {
     class CalendarPopulator
     {

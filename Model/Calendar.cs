@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Peanuts.Interfaces;
 using System.Collections.ObjectModel;
 
-namespace Peanuts.Model
+namespace Peanuts
 {
     public sealed class Calendar
     {

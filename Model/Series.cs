@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Peanuts.Interfaces;
 
-namespace Peanuts.Model
+namespace Peanuts
 {
     class Series : ISeries
     {

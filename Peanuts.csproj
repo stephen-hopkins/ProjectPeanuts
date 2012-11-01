@@ -108,12 +108,16 @@
     </Compile>
     <Compile Include="Controller\CalendarPopulator.cs" />
     <Compile Include="Helpers\DataFetcher.cs" />
+    <Compile Include="Helpers\PeanutsException.cs" />
     <Compile Include="Interfaces\IDataFetcher.cs" />
     <Compile Include="Interfaces\IEpisode.cs" />
     <Compile Include="Interfaces\ISeries.cs" />
+    <Compile Include="Interfaces\ITVServiceCollection.cs" />
     <Compile Include="Model\Calendar.cs" />
     <Compile Include="Model\Episode.cs" />
     <Compile Include="Model\Series.cs" />
+    <Compile Include="Model\TVService.cs" />
+    <Compile Include="Model\TVServiceCollection.cs" />
     <Compile Include="View\Components\EpisodeView.cs" />
     <Compile Include="View\Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
