@@ -7,15 +7,13 @@ using Windows.UI.Xaml.Controls;
 
 namespace Peanuts
 {
-    class CalendarPopulator
+    class CalendarController
     {
-        private Calendar calendar;
-
-        public CalendarPopulator()
+        public CalendarController()
         {
             Episode e1 = new Episode();
             e1.EpisodeNumber = 1;
-            e1.ImageURI = "An image URI";
+            e1.ImageURI = "http://www.birdsong-peanuts.com/images/peanuts.jpg";
             e1.SeasonNumber = 6;
             e1.Synopsis = "Stefan goes out for drinks and is ordered by his boss to buy peanuts for everybody.";
             e1.Title = "The peanuts incident";
@@ -26,8 +24,7 @@ namespace Peanuts
             s1.AddEpisode(e1);
             s1.Title = "Grads gone wild.";
 
-            calendar = new Calendar();
-            calendar.AddEpisode(s1.getNextEpisode());
+            Calendar.AddEpisode(s1.getNextEpisode());
         }
     }
 }

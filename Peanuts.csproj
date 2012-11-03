@@ -106,7 +106,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controller\CalendarPopulator.cs" />
+    <Compile Include="Controller\CalendarController.cs" />
     <Compile Include="Helpers\DataFetcher.cs" />
     <Compile Include="Helpers\PeanutsException.cs" />
     <Compile Include="Interfaces\IDataFetcher.cs" />
@@ -118,7 +118,6 @@
     <Compile Include="Model\Series.cs" />
     <Compile Include="Model\TVService.cs" />
     <Compile Include="Model\TVServiceCollection.cs" />
-    <Compile Include="View\Components\EpisodeView.cs" />
     <Compile Include="View\Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

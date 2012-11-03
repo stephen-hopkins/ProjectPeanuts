@@ -4,37 +4,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Peanuts"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:data="using:Peanuts.Model"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="Page_Loaded">
 
-    <Page.Resources>
-        <!-- Collection of items displayed by this page -->
-        <CollectionViewSource
-            x:Name="CalendarViewSource"
-            Source="{Binding Episodes}"
-            d:Source="{Binding Episodes, Source={d:DesignInstance Type=data:Calendar, IsDesignTimeCreatable=True}}"/>
-
-
-        <DataTemplate x:Key="EpisodeViewTemplate">
-                <Grid Height="110" Margin="6">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border Background="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="110" Height="110">
-                        <!--<Image Source="{Binding Image}" Stretch="UniformToFill"/>-->
-                    </Border>
-                    <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                        <TextBlock Text="{Binding Title}" TextWrapping="NoWrap"/>
-                        <TextBlock Text="{Binding Synopsis}"  TextWrapping="NoWrap"/>
-
-                    </StackPanel>
-                </Grid>
-            </DataTemplate>
-        
-        
-        
+    <Page.Resources>  
     </Page.Resources>
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
@@ -43,13 +16,31 @@
     	<TextBlock Margin="58,43,1138,652" TextWrapping="Wrap" Text="Peanuts" FontSize="48"/>
     	    <StackPanel x:Name="CalendarPanel" HorizontalAlignment="Left" Height="552" Margin="58,116,0,0" VerticalAlignment="Top" Width="601">
                 <!-- LIST VIEW -->
-                    <ListView
-                        x:Name="CalendarList"
-                        Height="552"
-                        ItemsSource="{Binding Source={StaticResource CalendarViewSource}}"
-                        ItemTemplate="{StaticResource EpisodeViewTemplate}">
+
+                    <ListView x:Name="ItemListView" ItemsSource="{Binding}" SelectionChanged="ItemListView_SelectionChanged">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ImageURI}" Height="100" Width="100" />
+                                    <Grid>
+                                        <StackPanel Orientation="Vertical">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="S"/>
+                                                <TextBlock Text="{Binding ViewSeasonNumber}"/>
+                                                <TextBlock Text="E"/>
+                                                <TextBlock Text="{Binding ViewEpisodeNumber}"/>
+                                                <TextBlock Text=" - "/>
+                                                <TextBlock Text="{Binding Title}"/>
+                                            </StackPanel>
+                                            <TextBlock TextWrapping="Wrap" Text="{Binding Synopsis}"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
-               <!-- LIST VIEW -->
+                
+                    <!-- LIST VIEW -->
                 </StackPanel>
 		    <StackPanel x:Name="SearchPanel" HorizontalAlignment="Left" Height="552" Margin="718,116,0,0" VerticalAlignment="Top" Width="601">
 			<Grid>

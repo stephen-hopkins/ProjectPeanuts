@@ -7,23 +7,24 @@ using System.Collections.ObjectModel;
 
 namespace Peanuts
 {
-    public sealed class Calendar
+    public static  class Calendar
     {
 
-        private static Calendar calendar = new Calendar();
+        private static List<IEpisode> episodes = new List<IEpisode>();
 
-        private ObservableCollection<IEpisode> _episodes = new ObservableCollection<IEpisode>();
-        public ObservableCollection<IEpisode> Episodes
+        public static List<IEpisode> GetCalendarEpisodes()
         {
-            get { return this._episodes; }
+            return episodes;
         }
 
-        public void AddEpisode(IEpisode episode)
+        public static void AddEpisode(IEpisode episode)
         {
-            calendar.Episodes.Add(episode);
+            episodes.Add(episode);
         }
 
-        //public Calendar() { }
-            
+        public static void RemoveEpisode(IEpisode episode)
+        {
+            episodes.Remove(episode);
+        }        
     }
 }

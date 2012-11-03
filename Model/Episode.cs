@@ -31,6 +31,21 @@ namespace Peanuts
             }
         }
 
+        public string ViewSeasonNumber
+        {
+            get
+            {
+                if (seasonNumber < 10)
+                {
+                    return "0" + seasonNumber;
+                }
+                else
+                {
+                    return "" + seasonNumber;
+                }
+            }
+        }
+
         public int SeasonNumber
         {
             get
@@ -40,6 +55,21 @@ namespace Peanuts
             set
             {
                 seasonNumber = value;
+            }
+        }
+
+        public string ViewEpisodeNumber
+        {
+            get
+            {
+                if (episodeNumber < 10)
+                {
+                    return "0" + episodeNumber;
+                }
+                else
+                {
+                    return "" + episodeNumber;
+                }
             }
         }
 

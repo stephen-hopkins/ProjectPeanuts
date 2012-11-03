@@ -24,11 +24,21 @@ namespace Peanuts
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        CalendarPopulator calendarPopulator;
+        CalendarController calendarController;
+        private static List<IEpisode> episodes { get; set; }
 
         public MainPage()
         {
             this.InitializeComponent();
+        }
+
+        
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            calendarController = new CalendarController();
+            episodes = Calendar.GetCalendarEpisodes();
+            ItemListView.DataContext = episodes;
         }
 
         /// <summary>
@@ -37,8 +47,12 @@ namespace Peanuts
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
+        {      
+        }
+
+        private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            calendarPopulator = new CalendarPopulator();
+
         }
     }
 }
