@@ -24,7 +24,7 @@ namespace Peanuts
             s1.AddEpisode(e1);
             s1.Title = "Grads gone wild.";
 
-            Calendar.AddEpisode(s1.getNextEpisode());
+            Calendar.AddSeries(s1);
         }
     }
 }

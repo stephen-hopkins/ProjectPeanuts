@@ -10,21 +10,21 @@ namespace Peanuts
     public static  class Calendar
     {
 
-        private static List<IEpisode> episodes = new List<IEpisode>();
+        private static List<ISeries> series = new List<ISeries>();
 
-        public static List<IEpisode> GetCalendarEpisodes()
+        public static List<ISeries> GetCalendarSeries()
         {
-            return episodes;
+            return series;
         }
 
-        public static void AddEpisode(IEpisode episode)
+        public static void AddSeries(ISeries episode)
         {
-            episodes.Add(episode);
+            series.Add(episode);
         }
 
-        public static void RemoveEpisode(IEpisode episode)
+        public static void RemoveSeries(ISeries episode)
         {
-            episodes.Remove(episode);
+            series.Remove(episode);
         }        
     }
 }

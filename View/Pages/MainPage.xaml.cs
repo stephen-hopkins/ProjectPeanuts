@@ -25,7 +25,7 @@ namespace Peanuts
     public sealed partial class MainPage : Page
     {
         CalendarController calendarController;
-        private static List<IEpisode> episodes { get; set; }
+        private static List<ISeries> series { get; set; }
 
         public MainPage()
         {
@@ -37,8 +37,8 @@ namespace Peanuts
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             calendarController = new CalendarController();
-            episodes = Calendar.GetCalendarEpisodes();
-            ItemListView.DataContext = episodes;
+            series = Calendar.GetCalendarSeries();
+            ItemListView.DataContext = series;
         }
 
         /// <summary>
@@ -53,6 +53,11 @@ namespace Peanuts
         private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void StackPanel_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            Appbar.IsOpen = true;
         }
     }
 }

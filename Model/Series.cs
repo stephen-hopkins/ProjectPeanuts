@@ -64,5 +64,47 @@ namespace Peanuts
         {
             episodes.Add(episode);
         }
+
+        public string NextEpisodeTitle
+        {
+            get
+            {
+                return getNextEpisode().Title;
+            }
+        }
+
+        public string NextEpisodeNumber
+        {
+            get
+            {
+                string sNumber = "";
+                if (getNextEpisode().SeasonNumber < 10)
+                {
+                    sNumber = "S0" + getNextEpisode().SeasonNumber;
+                }
+                else
+                {
+                    sNumber = "S" + getNextEpisode().SeasonNumber;
+                }
+                string eNumber = "";
+                if (getNextEpisode().EpisodeNumber < 10)
+                {
+                    eNumber = "E0" + getNextEpisode().EpisodeNumber;
+                }
+                else
+                {
+                    eNumber = "E" + getNextEpisode().EpisodeNumber;
+                }
+                return sNumber + eNumber;
+            }
+        }
+
+        public string NextEpisodeImage
+        {
+            get
+            {
+                return getNextEpisode().ImageURI;
+            }
+        }
     }
 }

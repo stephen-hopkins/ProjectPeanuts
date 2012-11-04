@@ -20,19 +20,16 @@
                     <ListView x:Name="ItemListView" ItemsSource="{Binding}" SelectionChanged="ItemListView_SelectionChanged">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding ImageURI}" Height="100" Width="100" />
+                                <StackPanel Orientation="Horizontal" RightTapped="StackPanel_RightTapped">
+                                    <Image Source="{Binding NextEpisodeImage}" Height="100" Width="100" />
                                     <Grid>
                                         <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="{Binding Title}"/>
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="S"/>
-                                                <TextBlock Text="{Binding ViewSeasonNumber}"/>
-                                                <TextBlock Text="E"/>
-                                                <TextBlock Text="{Binding ViewEpisodeNumber}"/>
-                                                <TextBlock Text=" - "/>
-                                                <TextBlock Text="{Binding Title}"/>
+                                                <TextBlock Text="{Binding NextEpisodeNumber}"/>
+                                                <TextBlock Text="{Binding NextEpisodeTitle}"/>
                                             </StackPanel>
-                                            <TextBlock TextWrapping="Wrap" Text="{Binding Synopsis}"/>
+                                            <TextBlock Text="{Binding Channel}"/>
                                         </StackPanel>
                                     </Grid>
                                 </StackPanel>
