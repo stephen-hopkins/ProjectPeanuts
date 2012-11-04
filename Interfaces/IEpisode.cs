@@ -8,6 +8,7 @@ namespace Peanuts
 {
     public interface IEpisode
     {
+        string RoviID { get; set; }
         string Title { get; set;}
         int SeasonNumber { get; set;}
         int EpisodeNumber { get; set;}

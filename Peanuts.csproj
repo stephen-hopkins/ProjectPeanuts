@@ -106,6 +106,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\BindableBase.cs" />
+    <Compile Include="Common\BooleanNegationConverter.cs" />
+    <Compile Include="Common\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Common\LayoutAwarePage.cs" />
+    <Compile Include="Common\RichTextColumns.cs" />
+    <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="Controller\CalendarController.cs" />
     <Compile Include="Helpers\DataFetcher.cs" />
     <Compile Include="Helpers\PeanutsException.cs" />
@@ -115,9 +121,13 @@
     <Compile Include="Interfaces\ITVServiceCollection.cs" />
     <Compile Include="Model\Calendar.cs" />
     <Compile Include="Model\Episode.cs" />
+    <Compile Include="Model\Exceptions\NextEpisodeInSeriesNotSetException.cs" />
     <Compile Include="Model\Series.cs" />
     <Compile Include="Model\TVService.cs" />
     <Compile Include="Model\TVServiceCollection.cs" />
+    <Compile Include="View\Pages\EpisodePage.xaml.cs">
+      <DependentUpon>EpisodePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -134,6 +144,7 @@
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Common\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -143,6 +154,10 @@
     <Page Include="Common\StandardStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Pages\EpisodePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>

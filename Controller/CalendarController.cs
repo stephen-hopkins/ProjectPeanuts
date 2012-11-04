@@ -17,6 +17,7 @@ namespace Peanuts
             e1.SeasonNumber = 6;
             e1.Synopsis = "Stefan goes out for drinks and is ordered by his boss to buy peanuts for everybody.";
             e1.Title = "The peanuts incident";
+            e1.RoviID = "123";
 
             Series s1 = new Series();
             s1.Channel = "Brentwood TV";

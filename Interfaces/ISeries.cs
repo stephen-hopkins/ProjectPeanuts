@@ -11,8 +11,8 @@ namespace Peanuts
         string Title { get; set; }
         string Channel { get; set; }
         List<IEpisode> Episodes { get; set; }
+        IEpisode NextEpisode { get; }
 
         void AddEpisode(IEpisode episode);
-        IEpisode getNextEpisode();
     }
 }

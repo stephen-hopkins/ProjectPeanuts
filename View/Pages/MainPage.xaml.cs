@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Peanuts.View.Pages;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,9 +31,7 @@ namespace Peanuts
         public MainPage()
         {
             this.InitializeComponent();
-        }
-
-        
+        } 
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -47,12 +46,14 @@ namespace Peanuts
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
-        {      
+        {
         }
 
         private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            Series selectedSeries = (Series)e.AddedItems.First();
+            EpisodePage.episode = selectedSeries.NextEpisode;
+            Frame.Navigate(typeof(Peanuts.View.Pages.EpisodePage));
         }
 
         private void StackPanel_RightTapped(object sender, RightTappedRoutedEventArgs e)

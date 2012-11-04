@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Peanuts.Model.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +7,30 @@ using System.Threading.Tasks;
 
 namespace Peanuts
 {
-    class Series : ISeries
+    public class Series : ISeries
     {
 
         private string title;
         private string channel;
         private List<IEpisode> episodes;
 
+        private IEpisode nextEpisode;
+
         public Series()
         {
             episodes = new List<IEpisode>();
+        }
+
+        public IEpisode NextEpisode
+        {
+            get
+            {
+                if (nextEpisode == null)
+                {
+                    SetNextEpisode();
+                }
+                return nextEpisode;
+            }
         }
 
         public string Title
@@ -54,9 +69,9 @@ namespace Peanuts
             }
         }
 
-        public IEpisode getNextEpisode()
+        private void SetNextEpisode()
         {
-            return Episodes.First();
+            nextEpisode = Episodes.First();
         }
 
 
@@ -69,7 +84,15 @@ namespace Peanuts
         {
             get
             {
-                return getNextEpisode().Title;
+                try
+                {
+                    return nextEpisode.Title;
+                }
+                catch (Exception)
+                {
+                    SetNextEpisode();
+                    return NextEpisodeTitle;
+                }
             }
         }
 
@@ -77,25 +100,33 @@ namespace Peanuts
         {
             get
             {
-                string sNumber = "";
-                if (getNextEpisode().SeasonNumber < 10)
+                try
                 {
-                    sNumber = "S0" + getNextEpisode().SeasonNumber;
+                    string sNumber = "";
+                    if (nextEpisode.SeasonNumber < 10)
+                    {
+                        sNumber = "S0" + nextEpisode.SeasonNumber;
+                    }
+                    else
+                    {
+                        sNumber = "S" + nextEpisode.SeasonNumber;
+                    }
+                    string eNumber = "";
+                    if (nextEpisode.EpisodeNumber < 10)
+                    {
+                        eNumber = "E0" + nextEpisode.EpisodeNumber;
+                    }
+                    else
+                    {
+                        eNumber = "E" + nextEpisode.EpisodeNumber;
+                    }
+                    return sNumber + eNumber;
                 }
-                else
+                catch (Exception)
                 {
-                    sNumber = "S" + getNextEpisode().SeasonNumber;
+                    SetNextEpisode();
+                    return NextEpisodeNumber;
                 }
-                string eNumber = "";
-                if (getNextEpisode().EpisodeNumber < 10)
-                {
-                    eNumber = "E0" + getNextEpisode().EpisodeNumber;
-                }
-                else
-                {
-                    eNumber = "E" + getNextEpisode().EpisodeNumber;
-                }
-                return sNumber + eNumber;
             }
         }
 
@@ -103,8 +134,46 @@ namespace Peanuts
         {
             get
             {
-                return getNextEpisode().ImageURI;
+                try
+                {
+                    return nextEpisode.ImageURI;
+                }
+                catch (Exception)
+                {
+                    SetNextEpisode();
+                    return NextEpisodeImage;
+                }
             }
+        }
+
+        public string NextEpisodeRoviID
+        {
+            get
+            {
+                try
+                {
+                    return nextEpisode.RoviID;
+                }
+                catch (Exception)
+                {
+                    SetNextEpisode();
+                    return NextEpisodeRoviID;
+                }
+            }
+        }
+
+        public IEpisode GetEpisodeByRoviID(string roviID)
+        {
+            IEpisode result = null;
+            foreach (IEpisode ep in episodes)
+            {
+                if (ep.RoviID == roviID)
+                {
+                    result =  ep;
+                    break;
+                }
+            }
+            return result;
         }
     }
 }

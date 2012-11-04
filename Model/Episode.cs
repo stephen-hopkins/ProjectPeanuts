@@ -8,7 +8,7 @@ namespace Peanuts
 {
     class Episode : IEpisode
     {
-
+        private string roviID;
         private string title;
         private int seasonNumber;
         private int episodeNumber;
@@ -106,6 +106,18 @@ namespace Peanuts
             set
             {
                 synopsis = value;
+            }
+        }
+
+        public string RoviID
+        {
+            get
+            {
+                return roviID;
+            }
+            set
+            {
+                roviID = value;
             }
         }
     }

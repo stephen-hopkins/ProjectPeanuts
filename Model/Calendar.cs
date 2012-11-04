@@ -25,6 +25,6 @@ namespace Peanuts
         public static void RemoveSeries(ISeries episode)
         {
             series.Remove(episode);
-        }        
+        }
     }
 }
