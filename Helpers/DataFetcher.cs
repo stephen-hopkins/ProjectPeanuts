@@ -6,11 +6,22 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Windows.Data.Json;
 using Windows.Foundation.Collections;
+using Windows.Security.Cryptography;
+using Windows.Security.Cryptography.Core;
+using Windows.Storage.Streams;
 
 namespace Peanuts
 {
     public class DataFetcher : IDataFetcher
     {
+        private string apiKey;
+        private string secretKey;
+
+        public DataFetcher() {
+            apiKey = "zpcmbxsgmebm3g9vb4xuhasq";
+            secretKey = "88nsXYtbPX";
+        }
+
         public async Task<TVServiceCollection> getTVServices() {
 
             TVServiceCollection tvServices = new TVServiceCollection();
@@ -35,5 +46,22 @@ namespace Peanuts
             }
             return tvServices;
         }
+
+        private string getRoviSig() {
+            long unixTime = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000000;
+            string toBeHashed = apiKey + secretKey + unixTime;
+
+            IBuffer binaryBuffer = CryptographicBuffer.ConvertStringToBinary(toBeHashed, BinaryStringEncoding.Utf8);
+            HashAlgorithmProvider hasher = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Md5);
+            IBuffer hashedBinaryBuffer = hasher.HashData(binaryBuffer);
+            if (hashedBinaryBuffer.Length != hasher.HashLength) {
+                throw new PeanutsException("Error creating MD5 hash in DataFetcher");
+            }
+
+            return CryptographicBuffer.EncodeToBase64String(hashedBinaryBuffer);
+        }
+
+
+
     }
 }

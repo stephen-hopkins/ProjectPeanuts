@@ -36,7 +36,6 @@ namespace Peanuts
             DataFetcher df = new DataFetcher();
             var temp = df.getTVServices();
             TVServiceCollection tvc = temp.Result;
-            int h = 1;
         }
 
         /// <summary>
