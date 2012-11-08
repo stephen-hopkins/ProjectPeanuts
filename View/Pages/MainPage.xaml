@@ -12,13 +12,6 @@
     </Page.Resources>
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-        <!--<Frame x:Name="RootFrame">
-            <Frame.ContentTransitions>
-                <TransitionCollection>
-                    <EntranceThemeTransition FromHorizontalOffset="200" />
-                </TransitionCollection>
-            </Frame.ContentTransitions>
-        </Frame>-->
         <Viewbox HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top" Width="Auto">
             <Grid>
                 <TextBlock Margin="58,43,1138,652" TextWrapping="Wrap" Text="Peanuts" FontSize="48"/>
@@ -28,7 +21,7 @@
                     <ListView x:Name="ItemListView" ItemsSource="{Binding}" SelectionChanged="ItemListView_SelectionChanged">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal" RightTapped="StackPanel_RightTapped">
+                                <StackPanel Orientation="Horizontal" Tapped="StackPanel_Tapped">
                                     <Image Source="{Binding NextEpisodeImage}" Height="100" Width="100" />
                                     <Grid>
                                         <StackPanel Orientation="Vertical">
@@ -55,14 +48,14 @@
                 </StackPanel>
             </Grid>
         </Viewbox>
-        <AppBar x:Name="Appbar" Margin="0,690,0,0" Background="{StaticResource AppBarBackgroundThemeBrush}">
+        <AppBar x:Name="Appbar" Margin="0,400,0,0" Background="{StaticResource AppBarBackgroundThemeBrush}" Opened="Appbar_Opened">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock  TextWrapping="Wrap" Text="Peanuts" FontSize="12" Width="611"/>
+                    <TextBlock x:Name="AppBarTitle"  TextWrapping="Wrap" Text="Peanuts" FontSize="24" Width="611"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal"/>
             </Grid>

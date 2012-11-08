@@ -9,7 +9,7 @@ namespace Peanuts
 {
     public class Series : ISeries
     {
-
+        private string roviID;
         private string title;
         private string channel;
         private List<IEpisode> episodes;
@@ -174,6 +174,23 @@ namespace Peanuts
                 }
             }
             return result;
+        }
+
+        public string RoviID
+        {
+            get
+            {
+                return roviID;
+            }
+            set
+            {
+                roviID = value;
+            }
+        }
+
+        public bool Equals(ISeries other)
+        {
+            return this.RoviID.Equals(other.RoviID);
         }
     }
 

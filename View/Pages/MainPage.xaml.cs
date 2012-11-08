@@ -27,6 +27,7 @@ namespace Peanuts
     {
         CalendarController calendarController;
         private static List<ISeries> series { get; set; }
+        private static Series selectedSeries;
 
         public MainPage()
         {
@@ -51,14 +52,37 @@ namespace Peanuts
 
         private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Series selectedSeries = (Series)e.AddedItems.First();
+            if(e.AddedItems.Count >= 1)
+            {
+                selectedSeries = (Series)e.AddedItems.First();
+                AppBarTitle.Text = selectedSeries.Title;
+                Appbar.IsOpen = true;
+            }
+            else if (e.RemovedItems.Count >= 1)
+            {
+                Appbar.IsOpen = false;
+                selectedSeries = null;
+            }
+        }
+
+        private void NavigateToEpisodePage()
+        {
             EpisodePage.episode = selectedSeries.NextEpisode;
             Frame.Navigate(typeof(Peanuts.View.Pages.EpisodePage));
         }
 
-        private void StackPanel_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void StackPanel_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            Appbar.IsOpen = true;
+            Appbar.IsOpen = false;
+            NavigateToEpisodePage();
+        }
+
+        private void Appbar_Opened(object sender, object e)
+        {
+            if (selectedSeries == null)
+            {
+                AppBarTitle.Text = "";
+            }
         }
     }
 }
