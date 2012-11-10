@@ -32,10 +32,11 @@ namespace Peanuts
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            //  code to test DataFetcher class
+            //  Steve code to test stuff
+            UserInfo ui = new UserInfo();
             DataFetcher df = new DataFetcher();
-            var temp = df.getTVServices();
-            TVServiceCollection tvc = temp.Result;
+            string sig = df.getRoviSearchSig();
+            int bint = 5;
         }
 
         /// <summary>

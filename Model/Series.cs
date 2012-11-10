@@ -205,12 +205,13 @@ public class SeriesSummary
     private string year;
     private string id;
 
-    public SeriesSummary(Uri image, string syn, string cou, string year)
+    public SeriesSummary(Uri image, string synopsis, string country, string year, string id)
     {
         this.imageURI = image;
-        this.synopsis = syn;
-        this.country = cou;
+        this.synopsis = synopsis;
+        this.country = country;
         this.year = year;
+        this.id = id;
     }
 
     public Uri ImageURI { get { return imageURI; } }

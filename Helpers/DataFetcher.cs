@@ -14,12 +14,14 @@ namespace Peanuts
 {
     public class DataFetcher : IDataFetcher
     {
-        private string apiKey;
-        private string secretKey;
+        private string tvListingsApiKey;
+        private string searchApiKey;
+        private string searchSecretKey;
 
         public DataFetcher() {
-            apiKey = "zpcmbxsgmebm3g9vb4xuhasq";
-            secretKey = "88nsXYtbPX";
+            tvListingsApiKey = "zpcmbxsgmebm3g9vb4xuhasq";
+            searchApiKey = "zpcmbxsgmebm3g9vb4xuhasq";
+            searchSecretKey = "88nsXYtbPX";
         }
 
         public async Task<TVServiceCollection> getTVServices() {
@@ -47,18 +49,15 @@ namespace Peanuts
             return tvServices;
         }
 
-        private string getRoviSig() {
-            long unixTime = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000000;
-            string toBeHashed = apiKey + secretKey + unixTime;
-
-            IBuffer binaryBuffer = CryptographicBuffer.ConvertStringToBinary(toBeHashed, BinaryStringEncoding.Utf8);
+        private string getRoviSearchSig() {
+            string timestamp = (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds.ToString();
+            timestamp = timestamp.Substring(0, timestamp.IndexOf("."));
+            string toBeHashed = searchApiKey + searchSecretKey + timestamp;
+            
             HashAlgorithmProvider hasher = HashAlgorithmProvider.OpenAlgorithm(HashAlgorithmNames.Md5);
-            IBuffer hashedBinaryBuffer = hasher.HashData(binaryBuffer);
-            if (hashedBinaryBuffer.Length != hasher.HashLength) {
-                throw new PeanutsException("Error creating MD5 hash in DataFetcher");
-            }
-
-            return CryptographicBuffer.EncodeToBase64String(hashedBinaryBuffer);
+            IBuffer binaryBuffer = CryptographicBuffer.ConvertStringToBinary(toBeHashed, BinaryStringEncoding.Utf8);
+            IBuffer hashedBuffer = hasher.HashData(binaryBuffer);
+            return CryptographicBuffer.EncodeToHexString(hashedBuffer);
         }
 
 

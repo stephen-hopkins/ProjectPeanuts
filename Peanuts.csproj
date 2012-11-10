@@ -115,6 +115,7 @@
     <Compile Include="Controller\CalendarController.cs" />
     <Compile Include="Helpers\DataFetcher.cs" />
     <Compile Include="Helpers\PeanutsException.cs" />
+    <Compile Include="Helpers\UserInfo.cs" />
     <Compile Include="Interfaces\IDataFetcher.cs" />
     <Compile Include="Interfaces\IEpisode.cs" />
     <Compile Include="Interfaces\ISeries.cs" />

@@ -12,9 +12,20 @@ namespace Peanuts
 
         public override string Message { get {return message;} }
 
+        public PeanutsException(string message) {
+            this.message = message;
+        }
 
-        public PeanutsException(string m) {
-            this.message = m;
+    }
+
+    class NoListingsAvailableException : PeanutsException
+    {
+        private string countryCode;
+
+        public string CountryCode { get { return countryCode; } }
+
+        public NoListingsAvailableException(string message, string countryCode) : base(message) {
+            this.countryCode = countryCode;
         }
     }
 }
