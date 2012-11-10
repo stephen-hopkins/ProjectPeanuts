@@ -195,3 +195,28 @@ namespace Peanuts
     }
 
 }
+
+public class SeriesSummary
+{
+
+    private Uri imageURI;
+    private string synopsis;
+    private string country;
+    private string year;
+    private string id;
+
+    public SeriesSummary(Uri image, string syn, string cou, string year)
+    {
+        this.imageURI = image;
+        this.synopsis = syn;
+        this.country = cou;
+        this.year = year;
+    }
+
+    public Uri ImageURI { get { return imageURI; } }
+    public string Synopsis { get { return synopsis; } }
+    public string Country { get { return country; } }
+    public string Year { get { return year; } }
+    public string ID { get { return id; } }
+
+}
