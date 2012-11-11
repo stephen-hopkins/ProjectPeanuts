@@ -205,7 +205,7 @@ public class SeriesSummary
     private string year;
     private string id;
 
-    public SeriesSummary(string title, Uri image, string synopsis, string country, string year, string id)
+    public SeriesSummary(string title, Uri image, string synopsis, string year, string id)
     {
         this.title = title;
         this.imageURI = image;

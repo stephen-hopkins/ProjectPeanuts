@@ -35,7 +35,9 @@ namespace Peanuts
             //  Steve code to test stuff
             DataFetcher df = new DataFetcher();
             var task = df.searchSeries("Lost");
-            List<SeriesSummary> tvs = task.Result;
+            //var task2 = df.searchAMGSeries("Lost");
+            List<SeriesSummary> series = task.Result;
+            //List<SeriesSummary> seriesAMG = task2.Result;
             int bint = 5;
         }
 
