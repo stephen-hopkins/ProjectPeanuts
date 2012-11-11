@@ -12,16 +12,21 @@ namespace Peanuts
     {
         private string countryCode;
         private string locale;
+        private string postCode;
         private Windows.Storage.ApplicationDataContainer roamingSettings;
 
 
         public string Locale { get { return locale; } }
         public string Country { get { return countryCode; } }
+        public string PostCode { get { return postCode; } }
 
 
         // initialise should be run after constructor, in try block (catch NoListingsAvailableException)
         public UserInfo() {
             roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+
+            // THIS NEEDS TO BE IMPLEMENTED!
+            postCode = "0";
         }
 
 

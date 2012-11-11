@@ -9,5 +9,6 @@ namespace Peanuts
     public interface IDataFetcher
     {
         Task<TVServiceCollection> getTVServices();
+        Task<List<SeriesSummary>> searchSeries(string input);
     }
 }

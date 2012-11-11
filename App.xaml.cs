@@ -33,9 +33,9 @@ namespace Peanuts
             this.Suspending += OnSuspending;
 
             //  Steve code to test stuff
-            UserInfo ui = new UserInfo();
             DataFetcher df = new DataFetcher();
-            string sig = df.getRoviSearchSig();
+            var task = df.searchSeries("Lost");
+            List<SeriesSummary> tvs = task.Result;
             int bint = 5;
         }
 

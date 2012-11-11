@@ -199,24 +199,24 @@ namespace Peanuts
 public class SeriesSummary
 {
 
+    private string title;
     private Uri imageURI;
     private string synopsis;
-    private string country;
     private string year;
     private string id;
 
-    public SeriesSummary(Uri image, string synopsis, string country, string year, string id)
+    public SeriesSummary(string title, Uri image, string synopsis, string country, string year, string id)
     {
+        this.title = title;
         this.imageURI = image;
         this.synopsis = synopsis;
-        this.country = country;
         this.year = year;
         this.id = id;
     }
 
+    public string Title { get { return title; } }
     public Uri ImageURI { get { return imageURI; } }
     public string Synopsis { get { return synopsis; } }
-    public string Country { get { return country; } }
     public string Year { get { return year; } }
     public string ID { get { return id; } }
 
