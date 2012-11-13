@@ -92,52 +92,6 @@ namespace Peanuts
             return result;
         }
 
-        /*  Format is different - need to amend
-        public async Task<List<SeriesSummary>> searchAMGSeries(string input) {
-
-            List<SeriesSummary> result = new List<SeriesSummary>();
-            string address = "http://api.rovicorp.com/search/v2.1/amgvideo/search?apikey=" + searchApiKey + "&sig=" + getRoviSearchSig() + "&query=" + input + "&entitytype=tvseries" + "&include=synopsis,images" + "&format=json";
-
-            HttpClient httpClient = new HttpClient();
-            string response = await httpClient.GetStringAsync(address);
-
-            JsonObject json = JsonObject.Parse(response);
-            JsonArray resultsArray = json.GetNamedObject("searchResponse").GetNamedArray("results");
-
-            for (uint n = 0; n < resultsArray.Count; n++) {
-                JsonObject thisResult = resultsArray.GetObjectAt(n);
-                string id = thisResult.GetNamedString("id");
-
-                JsonObject videoResult = thisResult.GetNamedObject("video");
-                string title = videoResult.GetNamedString("masterTitle");
-
-                string year = "";
-                if (videoResult.GetNamedValue("releaseYear").ValueType == JsonValueType.Number) {
-                    year = videoResult.GetNamedNumber("releaseYear").ToString();
-                }
-
-                string synopsis = "";
-                if (videoResult.GetNamedValue("synopsis").ValueType == JsonValueType.String) {
-                    synopsis = videoResult.GetNamedObject("synopsis").GetNamedString("synopsis");
-                }
-
-                Uri image;
-                if (videoResult.GetNamedValue("images").ValueType == JsonValueType.Array) {
-                    image = new Uri(videoResult.GetNamedArray("images").GetObjectAt(0).GetNamedString("url"));
-                } else {
-                    image = null;
-                }
-
-                result.Add(new SeriesSummary(title, image, synopsis, year, id));
-            }
-            return result;
-
-        }
-         * */
-
-
-
-
         private string getRoviSearchSig() {
             string timestamp = (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds.ToString();
             timestamp = timestamp.Substring(0, timestamp.IndexOf("."));

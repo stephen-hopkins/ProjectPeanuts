@@ -200,7 +200,7 @@ public class SeriesSummary
 {
 
     private string title;
-    private Uri imageURI;
+    private Uri image;
     private string synopsis;
     private string year;
     private string id;
@@ -208,14 +208,14 @@ public class SeriesSummary
     public SeriesSummary(string title, Uri image, string synopsis, string year, string id)
     {
         this.title = title;
-        this.imageURI = image;
+        this.image = image;
         this.synopsis = synopsis;
         this.year = year;
         this.id = id;
     }
 
     public string Title { get { return title; } }
-    public Uri ImageURI { get { return imageURI; } }
+    public Uri Image { get { return image; } }
     public string Synopsis { get { return synopsis; } }
     public string Year { get { return year; } }
     public string ID { get { return id; } }
