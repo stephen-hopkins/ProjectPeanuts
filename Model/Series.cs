@@ -7,13 +7,37 @@ using System.Threading.Tasks;
 
 namespace Peanuts
 {
-    public class Series : ISeries
+    public class SeriesSummary
     {
-        private string roviID;
         private string title;
-        private string channel;
-        private List<IEpisode> episodes;
+        private Uri image;
+        private string synopsis;
+        private string year;
+        private string id;
 
+        public SeriesSummary(string title, Uri image, string synopsis, string year, string id) {
+            this.title = title;
+            this.image = image;
+            this.synopsis = synopsis;
+            this.year = year;
+            this.id = id;
+        }
+
+        public SeriesSummary() { }
+
+        public string Title { get { return title; } }
+        public Uri Image { get { return image; } }
+        public string Synopsis { get { return synopsis; } }
+        public string Year { get { return year; } }
+        public string ID { get { return id; } }
+    }
+
+
+
+    public class Series : SeriesSummary, ISeries
+    {
+  
+        private List<IEpisode> episodes;
         private IEpisode nextEpisode;
 
         public Series()
@@ -30,30 +54,6 @@ namespace Peanuts
                     SetNextEpisode();
                 }
                 return nextEpisode;
-            }
-        }
-
-        public string Title
-        {
-            get
-            {
-                return title;
-            }
-            set
-            {
-                title = value;
-            }
-        }
-
-        public string Channel
-        {
-            get
-            {
-                return channel;
-            }
-            set
-            {
-                channel = value;
             }
         }
 
@@ -176,48 +176,11 @@ namespace Peanuts
             return result;
         }
 
-        public string RoviID
-        {
-            get
-            {
-                return roviID;
-            }
-            set
-            {
-                roviID = value;
-            }
-        }
-
         public bool Equals(ISeries other)
         {
-            return this.RoviID.Equals(other.RoviID);
+            return this.ID.Equals(other.ID);
         }
     }
 
 }
 
-public class SeriesSummary
-{
-
-    private string title;
-    private Uri image;
-    private string synopsis;
-    private string year;
-    private string id;
-
-    public SeriesSummary(string title, Uri image, string synopsis, string year, string id)
-    {
-        this.title = title;
-        this.image = image;
-        this.synopsis = synopsis;
-        this.year = year;
-        this.id = id;
-    }
-
-    public string Title { get { return title; } }
-    public Uri Image { get { return image; } }
-    public string Synopsis { get { return synopsis; } }
-    public string Year { get { return year; } }
-    public string ID { get { return id; } }
-
-}

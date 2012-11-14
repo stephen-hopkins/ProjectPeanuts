@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Peanuts
 {
-    public class TVServiceCollection : ITVServiceCollection
+    public class TVServiceCollection
     {
 
         private List<TVService> tvServices;
@@ -25,9 +25,12 @@ namespace Peanuts
         }
 
  
-
+        /// <summary>
+        /// Returns list of areas that TV Services in this collection cover.
+        /// </summary>
+        /// <returns>List{String}</returns>
         public List<String> getAreas() {
-            List<string> areas = new List<string>();
+            List<string> areas = new List<string>(tvServices.Count);
             foreach (TVService tvService in tvServices) {
                 if (!areas.Contains(tvService.Area)) {
                     areas.Add(tvService.Area);
@@ -36,8 +39,13 @@ namespace Peanuts
             return areas;
         }
 
+        /// <summary>
+        /// Returns list of TV Service providers in specified area.
+        /// </summary>
+        /// <param name="area">string</param>
+        /// <returns>List{string}</returns>
         public List<string> getProviders(string area) {
-            List<string> providers = new List<string>();
+            List<string> providers = new List<string>(tvServices.Count);
             previousArea = area;
             tvServicesInArea.Clear();
 
@@ -50,6 +58,12 @@ namespace Peanuts
             return providers;
         }
 
+        /// <summary>
+        /// Returns list of TV Services in specified area, from specified provider
+        /// </summary>
+        /// <param name="area">string</param>
+        /// <param name="provider">string</param>
+        /// <returns>List{string}</returns>
         public List<string> getTVServices(string area, string provider) {
 
             // check if cache (tvServicesInArea) contains relevant results, if so use it
@@ -69,7 +83,11 @@ namespace Peanuts
         }
 
  
-
+        /// <summary>
+        /// Get serviceID for name of TV Service.
+        /// </summary>
+        /// <param name="Name of TV Service">string</param>
+        /// <returns>string</returns>
         public string getServiceID(string name) {
             foreach (TVService tvService in tvServices) {
                 if (tvService.Name == name) {

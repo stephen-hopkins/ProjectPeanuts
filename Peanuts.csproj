@@ -116,10 +116,8 @@
     <Compile Include="Helpers\DataFetcher.cs" />
     <Compile Include="Helpers\PeanutsException.cs" />
     <Compile Include="Helpers\UserInfo.cs" />
-    <Compile Include="Interfaces\IDataFetcher.cs" />
     <Compile Include="Interfaces\IEpisode.cs" />
     <Compile Include="Interfaces\ISeries.cs" />
-    <Compile Include="Interfaces\ITVServiceCollection.cs" />
     <Compile Include="Model\Calendar.cs" />
     <Compile Include="Model\Episode.cs" />
     <Compile Include="Model\Exceptions\NextEpisodeInSeriesNotSetException.cs" />

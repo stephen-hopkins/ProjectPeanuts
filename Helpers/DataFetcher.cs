@@ -12,7 +12,7 @@ using Windows.Storage.Streams;
 
 namespace Peanuts
 {
-    public class DataFetcher : IDataFetcher
+    public class DataFetcher 
     {
         private string tvListingsApiKey;
         private string searchApiKey;
@@ -27,6 +27,13 @@ namespace Peanuts
             userInfo.initialise();
         }
 
+
+
+        /// <summary>
+        /// Gets country, locale, and postcode from UserInfo and returns list of relevant TV services.  Need to do Task.Wait() then check for exceptions before getting result
+        /// The function that does this should be async to avoid blocking gui.  Can throw various internet related exceptions.
+        /// </summary>
+        /// <returns>Task{TVServiceCollection}</returns>
         public async Task<TVServiceCollection> getTVServices() {
 
             TVServiceCollection tvServices = new TVServiceCollection();
@@ -51,6 +58,11 @@ namespace Peanuts
             return tvServices;
         }
 
+        /// <summary>
+        /// Searchs for specified search term, returns list of possible Series matches.
+        /// </summary>
+        /// <param name="Search Term">string</param>
+        /// <returns>Task{List{SeriesSummary}}</returns>
         public async Task<List<SeriesSummary>> searchSeries(string input) {
             
             List<SeriesSummary> result = new List<SeriesSummary>();
@@ -92,6 +104,9 @@ namespace Peanuts
             return result;
         }
 
+
+
+        // returns Sig needed for Rovi API.  Sig is valid for around 5 minutes.
         private string getRoviSearchSig() {
             string timestamp = (DateTime.UtcNow - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds.ToString();
             timestamp = timestamp.Substring(0, timestamp.IndexOf("."));

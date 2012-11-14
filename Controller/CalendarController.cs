@@ -20,7 +20,7 @@ namespace Peanuts
             e1.RoviID = "123";
 
             Series s1 = new Series();
-            s1.RoviID = "1234";
+            s1.ID = "1234";
             s1.Channel = "Brentwood TV";
             s1.Episodes = new List<IEpisode>();
             s1.AddEpisode(e1);
@@ -35,7 +35,7 @@ namespace Peanuts
             e2.RoviID = "42";
 
             Series s2 = new Series();
-            s2.RoviID = "666";
+            s2.ID = "666";
             s2.Channel = "Brentwood TV";
             s2.Episodes = new List<IEpisode>();
             s2.AddEpisode(e2);
