@@ -11,9 +11,6 @@
     mc:Ignorable="d" Loaded="episodePage_Loaded">
 
     <Page.Resources>
-
-        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">My Application</x:String>
     </Page.Resources>
 
     <!--
@@ -34,8 +31,15 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=episodePage}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="episodePageTitle" Grid.Column="1" Text="Episode Title" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="episodePageTitle" Grid.Column="1" Text="Loading..." Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
+        <Image x:Name="EpisodeImg" HorizontalAlignment="Left" Height="263" Margin="121,29,0,0" Grid.Row="1" VerticalAlignment="Top" Width="340"/>
+        <TextBlock x:Name="SynopsisTextBlock" HorizontalAlignment="Left" Height="193" Margin="121,308,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Loading..." VerticalAlignment="Top" Width="1157" FontSize="24"/>
+        <TextBlock x:Name="SeriesTitleTextBlock" HorizontalAlignment="Left" Margin="615,29,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="41" Width="719" FontSize="32">
+        	<Run Text="Loading..."/>
+        	<LineBreak/>
+        	<Run/>
+        </TextBlock>
 
         <VisualStateManager.VisualStateGroups>
 
