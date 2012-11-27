@@ -14,6 +14,7 @@ namespace Peanuts
         private string synopsis;
         private string year;
         private string id;
+        private string channel;
 
         public SeriesSummary(string title, Uri image, string synopsis, string year, string id) {
             this.title = title;
@@ -25,11 +26,12 @@ namespace Peanuts
 
         public SeriesSummary() { }
 
-        public string Title { get { return title; } }
-        public Uri Image { get { return image; } }
-        public string Synopsis { get { return synopsis; } }
-        public string Year { get { return year; } }
-        public string ID { get { return id; } }
+        public string Title { get; set; }
+        public Uri Image { get; set; }
+        public string Synopsis { get; set; }
+        public string Year { get; set; }
+        public string ID { get; set; }
+        public string Channel { get; set; }
     }
 
 
@@ -176,7 +178,7 @@ namespace Peanuts
             return result;
         }
 
-        public bool Equals(ISeries other)
+        public bool Equals(Series other)
         {
             return this.ID.Equals(other.ID);
         }

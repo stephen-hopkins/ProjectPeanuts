@@ -57,8 +57,9 @@ namespace Peanuts.View.Pages
             if (episode != null)
             {
                 episodePageTitle.Text = episode.Title;
-                EpisodeImg.Source = new Uri(episode.ImageURI);
-
+               // EpisodeImg.Source = episode.ImageURI;
+                SynopsisTextBlock.Text = episode.Synopsis;
+                SeriesTitleTextBlock.Text = MainPage.selectedSeries.Title;
             }
         }
     }

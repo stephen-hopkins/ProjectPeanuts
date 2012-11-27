@@ -27,7 +27,7 @@ namespace Peanuts
     {
         CalendarController calendarController;
         private static List<ISeries> series { get; set; }
-        private static Series selectedSeries;
+        public static Series selectedSeries;
 
         public MainPage()
         {
