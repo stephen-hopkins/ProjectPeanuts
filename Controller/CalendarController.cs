@@ -22,7 +22,7 @@ namespace Peanuts
             Series s1 = new Series();
             s1.ID = "1234";
             s1.Channel = "Brentwood TV";
-            s1.Episodes = new List<IEpisode>();
+            s1.Episodes = new List<Episode>();
             s1.AddEpisode(e1);
             s1.Title = "Grads gone wild.";
 
@@ -37,7 +37,7 @@ namespace Peanuts
             Series s2 = new Series();
             s2.ID = "666";
             s2.Channel = "Brentwood TV";
-            s2.Episodes = new List<IEpisode>();
+            s2.Episodes = new List<Episode>();
             s2.AddEpisode(e2);
             s2.Title = "The humble Bulgarian";
 

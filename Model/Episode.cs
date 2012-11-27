@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Peanuts
 {
-    class Episode : IEpisode
+    public class Episode 
     {
         private string roviID;
         private string title;

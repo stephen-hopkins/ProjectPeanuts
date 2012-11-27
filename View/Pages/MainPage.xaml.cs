@@ -26,7 +26,7 @@ namespace Peanuts
     public sealed partial class MainPage : Page
     {
         CalendarController calendarController;
-        private static List<ISeries> series { get; set; }
+        private static List<Series> series { get; set; }
         public static Series selectedSeries;
 
         public MainPage()

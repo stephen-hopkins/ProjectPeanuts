@@ -22,7 +22,7 @@ namespace Peanuts.View.Pages
     public sealed partial class EpisodePage : Peanuts.Common.LayoutAwarePage
     {
 
-        public static IEpisode episode;
+        public static Episode episode;
 
         public EpisodePage()
         {

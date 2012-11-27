@@ -14,7 +14,16 @@ namespace Peanuts
         private string synopsis;
         private string year;
         private string id;
-        private string channel;
+
+        public SeriesSummary() { }
+
+        public SeriesSummary(SeriesSummary copy) {
+            this.title = copy.Title;
+            this.image = copy.Image;
+            this.synopsis = copy.Synopsis;
+            this.year = copy.Year;
+            this.id = copy.ID;
+        }
 
         public SeriesSummary(string title, Uri image, string synopsis, string year, string id) {
             this.title = title;
@@ -24,30 +33,36 @@ namespace Peanuts
             this.id = id;
         }
 
-        public SeriesSummary() { }
-
-        public string Title { get; set; }
-        public Uri Image { get; set; }
-        public string Synopsis { get; set; }
-        public string Year { get; set; }
-        public string ID { get; set; }
-        public string Channel { get; set; }
+        public string Title { get { return title; } set { title = value; } }
+        public Uri Image { get { return image; } set { image = value; } }
+        public string Synopsis { get { return synopsis; } set { synopsis = value; } }
+        public string Year { get { return year; } set { year = value; } }
+        public string ID { get { return id; } set { id = value; } }
     }
 
 
 
-    public class Series : SeriesSummary, ISeries
+    public class Series : SeriesSummary
     {
   
-        private List<IEpisode> episodes;
-        private IEpisode nextEpisode;
+        private List<Episode> episodes;
+        private Episode nextEpisode;
+
+        public string Channel { get; set; }
 
         public Series()
         {
-            episodes = new List<IEpisode>();
+            episodes = new List<Episode>();
         }
 
-        public IEpisode NextEpisode
+        public Series(SeriesSummary inputSS)
+            : base(inputSS) {
+            episodes = new List<Episode>();
+        }
+
+
+
+        public Episode NextEpisode
         {
             get
             {
@@ -59,7 +74,7 @@ namespace Peanuts
             }
         }
 
-        public List<IEpisode> Episodes
+        public List<Episode> Episodes
         {
             get
             {
@@ -77,7 +92,7 @@ namespace Peanuts
         }
 
 
-        public void AddEpisode(IEpisode episode)
+        public void AddEpisode(Episode episode)
         {
             episodes.Add(episode);
         }
@@ -164,10 +179,10 @@ namespace Peanuts
             }
         }
 
-        public IEpisode GetEpisodeByRoviID(string roviID)
+        public Episode GetEpisodeByRoviID(string roviID)
         {
-            IEpisode result = null;
-            foreach (IEpisode ep in episodes)
+            Episode result = null;
+            foreach (Episode ep in episodes)
             {
                 if (ep.RoviID == roviID)
                 {
