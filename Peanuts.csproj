@@ -122,6 +122,7 @@
     <Compile Include="Model\Series.cs" />
     <Compile Include="Model\TVService.cs" />
     <Compile Include="Model\TVServiceCollection.cs" />
+    <Compile Include="Serialization\SeriesSerializer.cs" />
     <Compile Include="View\Pages\EpisodePage.xaml.cs">
       <DependentUpon>EpisodePage.xaml</DependentUpon>
     </Compile>

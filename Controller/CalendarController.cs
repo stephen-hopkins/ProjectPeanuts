@@ -54,6 +54,7 @@ namespace Peanuts
             {
                 Calendar.AddSeries(s1);
                 Calendar.AddSeries(s2);
+                Serialization.SeriesSerializer.SerializeSeries(s1);
             }
         }
     }

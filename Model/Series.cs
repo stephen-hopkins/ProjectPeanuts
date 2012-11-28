@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Peanuts
 {
@@ -42,7 +43,7 @@ namespace Peanuts
 
 
 
-    public class Series : SeriesSummary
+    public class Series : SeriesSummary, IXmlSerializable
     {
   
         private List<Episode> episodes;
@@ -196,6 +197,25 @@ namespace Peanuts
         public bool Equals(Series other)
         {
             return this.ID.Equals(other.ID);
+        }
+
+        public System.Xml.Schema.XmlSchema GetSchema()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReadXml(System.Xml.XmlReader reader)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void WriteXml(System.Xml.XmlWriter writer)
+        {
+            writer.WriteString(this.ID);
+            writer.WriteString(this.Title);
+            writer.WriteString(this.Year);
+            writer.WriteString(this.Synopsis);
+            //writer.WriteString(this.Image.ToString());
         }
     }
 
