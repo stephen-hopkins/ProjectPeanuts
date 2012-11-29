@@ -32,11 +32,11 @@ namespace Peanuts
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            /*  Steve code to test stuff
+            
             DataFetcher df = new DataFetcher();
             var task = df.searchSeries("Lost");
             List<SeriesSummary> series = task.Result;
-            int bint = 5; */
+            int bint = 5; 
         }
 
         /// <summary>

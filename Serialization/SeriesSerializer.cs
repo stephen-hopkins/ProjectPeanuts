@@ -15,7 +15,7 @@ namespace Peanuts.Serialization
 
         public static async void SerializeSeries(Series s)
         {
-            StorageFile file = await localFolder.CreateFileAsync(s.ID.ToString(), CreationCollisionOption.ReplaceExisting);
+            StorageFile file = await localFolder.CreateFileAsync(s.RoviID.ToString(), CreationCollisionOption.ReplaceExisting);
 
             using (var stream = await file.OpenAsync(FileAccessMode.ReadWrite))
             {

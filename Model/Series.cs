@@ -14,7 +14,15 @@ namespace Peanuts
         private Uri image;
         private string synopsis;
         private string year;
-        private string id;
+        private string roviID;
+        private string cosmoID;
+
+        public string Title { get { return title; } set { title = value; } }
+        public Uri Image { get { return image; } set { image = value; } }
+        public string Synopsis { get { return synopsis; } set { synopsis = value; } }
+        public string Year { get { return year; } set { year = value; } }
+        public string RoviID { get { return roviID; } set { roviID = value; } }
+        public string CosmoID { get { return cosmoID; } }
 
         public SeriesSummary() { }
 
@@ -23,22 +31,20 @@ namespace Peanuts
             this.image = copy.Image;
             this.synopsis = copy.Synopsis;
             this.year = copy.Year;
-            this.id = copy.ID;
+            this.roviID = copy.RoviID;
+            this.cosmoID = copy.cosmoID;
         }
 
-        public SeriesSummary(string title, Uri image, string synopsis, string year, string id) {
+        public SeriesSummary(string title, Uri image, string synopsis, string year, string roviID, string cosmoID) {
             this.title = title;
             this.image = image;
             this.synopsis = synopsis;
             this.year = year;
-            this.id = id;
+            this.roviID = roviID;
+            this.cosmoID = cosmoID;
         }
 
-        public string Title { get { return title; } set { title = value; } }
-        public Uri Image { get { return image; } set { image = value; } }
-        public string Synopsis { get { return synopsis; } set { synopsis = value; } }
-        public string Year { get { return year; } set { year = value; } }
-        public string ID { get { return id; } set { id = value; } }
+
     }
 
 
@@ -148,55 +154,9 @@ namespace Peanuts
             }
         }
 
-        public string NextEpisodeImage
-        {
-            get
-            {
-                try
-                {
-                    return nextEpisode.ImageURI;
-                }
-                catch (Exception)
-                {
-                    SetNextEpisode();
-                    return NextEpisodeImage;
-                }
-            }
-        }
-
-        public string NextEpisodeRoviID
-        {
-            get
-            {
-                try
-                {
-                    return nextEpisode.RoviID;
-                }
-                catch (Exception)
-                {
-                    SetNextEpisode();
-                    return NextEpisodeRoviID;
-                }
-            }
-        }
-
-        public Episode GetEpisodeByRoviID(string roviID)
-        {
-            Episode result = null;
-            foreach (Episode ep in episodes)
-            {
-                if (ep.RoviID == roviID)
-                {
-                    result =  ep;
-                    break;
-                }
-            }
-            return result;
-        }
-
         public bool Equals(Series other)
         {
-            return this.ID.Equals(other.ID);
+            return this.RoviID.Equals(other.RoviID);
         }
 
         public System.Xml.Schema.XmlSchema GetSchema()
@@ -211,7 +171,7 @@ namespace Peanuts
 
         public void WriteXml(System.Xml.XmlWriter writer)
         {
-            writer.WriteString(this.ID);
+            writer.WriteString(this.RoviID);
             writer.WriteString(this.Title);
             writer.WriteString(this.Year);
             writer.WriteString(this.Synopsis);

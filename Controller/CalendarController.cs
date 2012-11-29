@@ -17,10 +17,9 @@ namespace Peanuts
             e1.SeasonNumber = 6;
             e1.Synopsis = "Stefan goes out for drinks and is ordered by his boss to buy peanuts for everybody.";
             e1.Title = "The peanuts incident";
-            e1.RoviID = "123";
 
             Series s1 = new Series();
-            s1.ID = "1234";
+            s1.RoviID = "1234";
             s1.Channel = "Brentwood TV";
             s1.Episodes = new List<Episode>();
             s1.AddEpisode(e1);
@@ -32,10 +31,9 @@ namespace Peanuts
             e2.SeasonNumber = 3;
             e2.Synopsis = "Stefan gets beaten up by an angry lamppost.";
             e2.Title = "The lamppost";
-            e2.RoviID = "42";
 
             Series s2 = new Series();
-            s2.ID = "666";
+            s2.RoviID = "666";
             s2.Channel = "Brentwood TV";
             s2.Episodes = new List<Episode>();
             s2.AddEpisode(e2);

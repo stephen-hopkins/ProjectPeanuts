@@ -8,28 +8,18 @@ namespace Peanuts
 {
     public class Episode 
     {
-        private string roviID;
+
         private string title;
         private int seasonNumber;
         private int episodeNumber;
-        private string imageURI;
         private string synopsis;
 
         public Episode()
         {
         }
 
-        public string Title
-        {
-            get
-            {
-                return title;
-            }
-            set
-            {
-                title = value;
-            }
-        }
+        public string Title { get { return title; } set { title = value; } }
+        public string ImageURI { get; set; }
 
         public string ViewSeasonNumber
         {
@@ -85,18 +75,6 @@ namespace Peanuts
             }
         }
 
-        public string ImageURI
-        {
-            get
-            {
-                return imageURI;
-            }
-            set
-            {
-                imageURI = value;
-            }
-        }
-
         public string Synopsis
         {
             get
@@ -106,18 +84,6 @@ namespace Peanuts
             set
             {
                 synopsis = value;
-            }
-        }
-
-        public string RoviID
-        {
-            get
-            {
-                return roviID;
-            }
-            set
-            {
-                roviID = value;
             }
         }
     }

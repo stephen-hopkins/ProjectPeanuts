@@ -14,6 +14,8 @@ namespace Peanuts
 {
     public class DataFetcher 
     {
+        private double preferredImageFormatID = 123;
+
         private string tvListingsApiKey;
         private string searchApiKey;
         private string searchSecretKey;
@@ -25,6 +27,17 @@ namespace Peanuts
             searchSecretKey = "88nsXYtbPX";
             userInfo = new UserInfo();
             userInfo.initialise();
+        }
+
+        public async Task<Series> convertToFullSeries(SeriesSummary basic) {
+            
+            Series result = new Series(basic);
+            cosmoID = basic.CosmoID;
+            int season = 1;
+            int episode = 1;
+            string address = "http://api.rovicorp.com/data/v1.1/video/season/" + season.ToString() + "/episode/" + episode.ToString() + "/info?cosmoid=" + basic.CosmoID + "&apikey=" + searchApiKey + "&sig=" + getRoviSearchSig() + "&include=synopsis";
+
+
         }
 
 
@@ -76,10 +89,11 @@ namespace Peanuts
 
             for (uint n = 0; n < resultsArray.Count; n++) {
                 JsonObject thisResult = resultsArray.GetObjectAt(n);
-                string id = thisResult.GetNamedNumber("id").ToString();
+                string roviID = thisResult.GetNamedNumber("id").ToString();
 
                 JsonObject videoResult = thisResult.GetNamedObject("video");
                 string title = videoResult.GetNamedString("masterTitle");
+                string cosmoID = videoResult.GetNamedObject("ids").GetNamedString("cosmoId");
 
                 string year = "";
                 if (videoResult.GetNamedValue("releaseYear").ValueType == JsonValueType.Number) {
@@ -91,14 +105,22 @@ namespace Peanuts
                     synopsis = videoResult.GetNamedObject("synopsis").GetNamedString("synopsis");
                 }
 
+                // set image to first image, then look for image of preferred type, and replace with this if poss.  set to null if no images at all
                 Uri image;
                 if (videoResult.GetNamedValue("images").ValueType == JsonValueType.Array) {
-                    image = new Uri(videoResult.GetNamedArray("images").GetObjectAt(0).GetNamedString("url"));
+                    JsonArray imageArray = videoResult.GetNamedArray("images");
+                    image = new Uri(imageArray.GetObjectAt(0).GetNamedString("url"));
+                    bool imageFound = false;
+                    for (uint arrayVar = 1 ; arrayVar < imageArray.Count ; arrayVar++) {
+                        if (!imageFound && imageArray.GetObjectAt(arrayVar).GetNamedNumber("formatid") == preferredImageFormatID) {
+                            image = new Uri(imageArray.GetObjectAt(arrayVar).GetNamedString("url"));
+                            imageFound = true;
+                        }
+                    }
                 } else {
                     image = null;
                 }
-
-                result.Add(new SeriesSummary(title, image, synopsis, year, id));
+                result.Add(new SeriesSummary(title, image, synopsis, year, roviID, cosmoID));
             }
             
             return result;
