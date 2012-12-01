@@ -42,8 +42,8 @@
                 </StackPanel>
                 <StackPanel x:Name="SearchPanel" HorizontalAlignment="Left" Height="552" Margin="718,116,0,0" VerticalAlignment="Top" Width="601">
                     <Grid>
-                        <TextBox x:Name="SearchBox" TextWrapping="Wrap" Text="Type here to search..." Height="62" Margin="10,208,0,-174" FontSize="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="406"/>
-                        <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="421,208,0,-174" FontSize="32"/>
+                        <TextBox x:Name="SearchBox" TextWrapping="Wrap" Text="Type here to search..." Height="62" Margin="10,208,0,-174" FontSize="32" VerticalAlignment="Top" HorizontalAlignment="Left" Width="406" GotFocus="SearchBox_GotFocus" LostFocus="SearchBox_LostFocus"/>
+                        <Button x:Name="SearchButton" Content="Search" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="421,208,0,-174" FontSize="32" Click="SearchButton_Click"/>
                     </Grid>
                 </StackPanel>
             </Grid>

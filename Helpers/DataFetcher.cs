@@ -29,6 +29,8 @@ namespace Peanuts
             userInfo.initialise();
         }
 
+        //COMMENTED TO BUILD
+        /**
         public async Task<Series> convertToFullSeries(SeriesSummary basic) {
             
             Series result = new Series(basic);
@@ -39,7 +41,7 @@ namespace Peanuts
 
 
         }
-
+        **/
 
 
         /// <summary>

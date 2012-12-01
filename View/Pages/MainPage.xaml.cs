@@ -68,7 +68,7 @@ namespace Peanuts
         private void NavigateToEpisodePage()
         {
             EpisodePage.episode = selectedSeries.NextEpisode;
-            Frame.Navigate(typeof(Peanuts.View.Pages.EpisodePage));
+            Frame.Navigate(typeof(EpisodePage));
         }
 
         private void StackPanel_Tapped(object sender, TappedRoutedEventArgs e)
@@ -83,6 +83,22 @@ namespace Peanuts
             {
                 AppBarTitle.Text = "";
             }
+        }
+
+        private void SearchBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            SearchBox.Text = "";
+        }
+
+        private void SearchBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            SearchBox.Text = "Type here to search...";
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchPage.searchString = SearchBox.Text;
+            Frame.Navigate(typeof(SearchPage));
         }
     }
 }
