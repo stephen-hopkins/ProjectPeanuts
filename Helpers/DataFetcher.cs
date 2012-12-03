@@ -29,19 +29,45 @@ namespace Peanuts
             userInfo.initialise();
         }
 
-        //COMMENTED TO BUILD
-        /**
         public async Task<Series> convertToFullSeries(SeriesSummary basic) {
             
             Series result = new Series(basic);
-            cosmoID = basic.CosmoID;
+
+            HttpClient httpClient = new HttpClient();       
             int season = 1;
             int episode = 1;
-            string address = "http://api.rovicorp.com/data/v1.1/video/season/" + season.ToString() + "/episode/" + episode.ToString() + "/info?cosmoid=" + basic.CosmoID + "&apikey=" + searchApiKey + "&sig=" + getRoviSearchSig() + "&include=synopsis";
+            string baseAddress = "http://api.rovicorp.com/data/v1/video/season/{0}/episode/{1}/info?cosmoid=" + basic.CosmoID + "&apikey=" + searchApiKey + "&sig=" + getRoviSearchSig() + "&include=synopsis";
+            
+            bool noMoreEpisodes = false;
+            while (!noMoreEpisodes) {
+                string addressToUse = String.Format(baseAddress, season, episode);
+                string response = httpClient.GetStringAsync(addressToUse).Result;
+                JsonObject json = JsonObject.Parse(response);
+                int responseCode = (int)json.GetNamedNumber("code");
 
-
+                if (responseCode == 200) {
+                    JsonObject videoObject = json.GetNamedObject("video");
+                    int cosmoID = (int)videoObject.GetNamedObject("ids").GetNamedNumber("cosmoId");
+                    string title = videoObject.GetNamedString("episodeTitle");
+                    string synopsis = videoObject.GetNamedObject("synopsis").GetNamedString("synopsis");
+                    Episode thisEpisode = new Episode(title, season, episode, synopsis, cosmoID);
+                    result.AddEpisode(thisEpisode);
+                    episode++;
+                } else if (responseCode == 404) {
+                    if (episode == 1) {
+                        noMoreEpisodes = true;
+                    }
+                    else {
+                        season++;
+                        episode = 1;
+                    }
+                } else {
+                    throw new PeanutsException("Unexpected response code when requesting episode information");
+                }    
+            }
+            return result;
         }
-        **/
+
 
 
         /// <summary>
