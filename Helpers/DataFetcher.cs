@@ -41,13 +41,14 @@ namespace Peanuts
             bool noMoreEpisodes = false;
             while (!noMoreEpisodes) {
                 string addressToUse = String.Format(baseAddress, season, episode);
-                string response = httpClient.GetStringAsync(addressToUse).Result;
+                string response = await httpClient.GetStringAsync(addressToUse);
                 JsonObject json = JsonObject.Parse(response);
                 int responseCode = (int)json.GetNamedNumber("code");
 
                 if (responseCode == 200) {
                     JsonObject videoObject = json.GetNamedObject("video");
-                    int cosmoID = (int)videoObject.GetNamedObject("ids").GetNamedNumber("cosmoId");
+                    string cosmoIDString = videoObject.GetNamedObject("ids").GetNamedString("cosmoId");
+                    int cosmoID = int.Parse(cosmoIDString);
                     string title = videoObject.GetNamedString("episodeTitle");
                     string synopsis = videoObject.GetNamedObject("synopsis").GetNamedString("synopsis");
                     Episode thisEpisode = new Episode(title, season, episode, synopsis, cosmoID);

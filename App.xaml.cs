@@ -32,13 +32,12 @@ namespace Peanuts
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 
-            /* STEVE TEST CODE
+            
             DataFetcher df = new DataFetcher();
-            var task = df.searchSeries("The Office");
-            List<SeriesSummary> series = task.Result;
-            var fullSeriesTask = df.convertToFullSeries(series[1]);
+            List<SeriesSummary> listOfSeries = df.searchSeries("The Office").Result;
+            Series full = df.convertToFullSeries(listOfSeries[0]).Result;
             int bint = 5; 
-             * */
+             
         }
 
         /// <summary>
